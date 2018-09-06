@@ -1,7 +1,6 @@
 import async from 'async'
 import { RateLimiter } from 'limiter'
 
-import itemIds from '../../items'
 import logger from '../../logger'
 import { productSearch } from './productSearch'
 
@@ -15,9 +14,9 @@ function throttleRequests (...args) {
 
 let cacheData = []
 
-export function generateLocalCache () {
+export function generateLocalCache (items) {
   return new Promise((resolve, reject) => {
-    async.mapSeries(itemIds, throttleRequests, (err, resultsArray) => {
+    async.mapSeries(items, throttleRequests, (err, resultsArray) => {
       if (err) {
         logger.error(err)
         return reject(err)

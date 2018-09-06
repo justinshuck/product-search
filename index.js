@@ -1,9 +1,11 @@
 import { startServer } from './src'
 import { generateLocalCache } from './src/services/cacheService'
 import logger from './logger'
+import itemIds from './items'
+
 
 logger.info('Building cache...')
-generateLocalCache().then(() => {
+generateLocalCache(itemIds).then(() => {
   logger.info('Cache built')
   startServer()
 }).catch(() => {

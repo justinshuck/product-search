@@ -13,7 +13,7 @@ function doesDescriptionContainTerm (description, term) {
   return description.toLowerCase().includes(term.toLowerCase())
 }
 
-export function productSearch (itemId, term, cb) {
+export function productSearch (itemId, cb) {
   const options = {
     method: 'GET',
     uri: getSearchRequestUrl(itemId),
@@ -36,10 +36,13 @@ export function productSearch (itemId, term, cb) {
       if (res.statusCode === 400) {
         return cb(null, false)
       }
-      if (!doesDescriptionContainTerm(JSON.parse(res.body).shortDescription, term)) {
-        return cb(null, false)
-      }
-      return cb(null, itemId)
+      // if (!doesDescriptionContainTerm(JSON.parse(res.body).shortDescription, term)) {
+      //   return cb(null, false)
+      // }
+      return cb(null, {
+        itemId,
+        shortDescription: JSON.parse(res.body).shortDescription
+      })
     } catch (e) {
       /**
            * If there's an error parsing the body and inspecting the description -

@@ -14,12 +14,6 @@ exports.getData = (req, res) => {
     if (isEmpty(req.query) || isEmpty(req.query.keyword)) {
       return resolve([])
     }
-    async.mapSeries(itemIds, (id, cb) => productSearch(id, req.query.keyword, cb), (err, resultsArray) => {
-      if (err) {
-        logger.error(err)
-        return reject(err)
-      }
-      return resolve(sanitizeResults(resultsArray))
-    })
+
   })
 }

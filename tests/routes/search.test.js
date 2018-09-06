@@ -8,6 +8,7 @@ const KEYWORD = 'backpack'
 
 describe.only('search route', () => {
     it('should resolve an empty array if the keyword is not present', () => {
+
     })
     it('should reject with an error if the series of requests fail', () => {
     })

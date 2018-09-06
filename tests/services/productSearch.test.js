@@ -43,38 +43,38 @@ describe('Search Service Spec', () => {
   })
 
   it('should return false if the keyword does not match', async () => {
-      const cbSpy = sinon.spy()
+    const cbSpy = sinon.spy()
 
-      nock(config.get('product.hostname'))
-          .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
-          .reply(200, {
-              shortDescription: 'some short description'
-          })
-      await productSearch(ITEMID, KEYWORD, cbSpy)
-      expect(cbSpy.calledOnce).to.be.true
-      expect(cbSpy.calledWith(null, false)).to.be.true
+    nock(config.get('product.hostname'))
+      .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
+      .reply(200, {
+        shortDescription: 'some short description'
+      })
+    await productSearch(ITEMID, KEYWORD, cbSpy)
+    expect(cbSpy.calledOnce).to.be.true
+    expect(cbSpy.calledWith(null, false)).to.be.true
   })
-    it('should return false if it cannot process the product response', async () => {
-        const cbSpy = sinon.spy()
+  it('should return false if it cannot process the product response', async () => {
+    const cbSpy = sinon.spy()
 
-        nock(config.get('product.hostname'))
-            .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
-            .reply(200, {})
-        await productSearch(ITEMID, KEYWORD, cbSpy)
-        expect(cbSpy.calledOnce).to.be.true
-        expect(cbSpy.calledWith(null, false)).to.be.true
-    })
+    nock(config.get('product.hostname'))
+      .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
+      .reply(200, {})
+    await productSearch(ITEMID, KEYWORD, cbSpy)
+    expect(cbSpy.calledOnce).to.be.true
+    expect(cbSpy.calledWith(null, false)).to.be.true
+  })
 
   it('should retun the itemId if the descption contains the keyword', async () => {
-      const cbSpy = sinon.spy()
+    const cbSpy = sinon.spy()
 
-      nock(config.get('product.hostname'))
-          .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
-          .reply(200, {
-              shortDescription: `some short description ${KEYWORD}`
-          })
-      await productSearch(ITEMID, KEYWORD, cbSpy)
-      expect(cbSpy.calledOnce).to.be.true
-      expect(cbSpy.calledWith(null, ITEMID)).to.be.true
+    nock(config.get('product.hostname'))
+      .get(`/v1/items/${ITEMID}?format=json&apiKey=${config.get('product.apiKey')}`)
+      .reply(200, {
+        shortDescription: `some short description ${KEYWORD}`
+      })
+    await productSearch(ITEMID, KEYWORD, cbSpy)
+    expect(cbSpy.calledOnce).to.be.true
+    expect(cbSpy.calledWith(null, ITEMID)).to.be.true
   })
 })

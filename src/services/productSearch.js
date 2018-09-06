@@ -9,10 +9,6 @@ function getSearchRequestUrl (itemId) {
   return `${config.get('product.hostname')}/v1/items/${itemId}?format=json&apiKey=${config.get('product.apiKey')}`
 }
 
-function doesDescriptionContainTerm (description, term) {
-  return description.toLowerCase().includes(term.toLowerCase())
-}
-
 export function productSearch (itemId, cb) {
   const options = {
     method: 'GET',
@@ -26,9 +22,8 @@ export function productSearch (itemId, cb) {
          * If the token is invalid - we want to exit immediately
          */
       if (res.statusCode === 403) {
-        logger.error(`Invalid User token - ${util.inspect(res.body)}`)
-        console.log('here')
-        return cb(Boom.forbidden('Invalid User token'))
+        logger.error(`${res.statusCode}: ${util.inspect(res.body)}`)
+        return cb(Boom.forbidden('An error occured during product search'))
       }
       /**
          * If the itemId is not found - we want to remove the item from the item list
@@ -36,12 +31,12 @@ export function productSearch (itemId, cb) {
       if (res.statusCode === 400) {
         return cb(null, false)
       }
-      // if (!doesDescriptionContainTerm(JSON.parse(res.body).shortDescription, term)) {
-      //   return cb(null, false)
-      // }
+      const { shortDescription, longDescription } = JSON.parse(res.body)
       return cb(null, {
         itemId,
-        shortDescription: JSON.parse(res.body).shortDescription
+        shortDescription,
+        longDescription
+
       })
     } catch (e) {
       /**

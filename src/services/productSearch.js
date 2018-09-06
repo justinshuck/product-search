@@ -20,8 +20,13 @@ export function productSearch (itemId, term, cb) {
     resolveWithFullResponse: true,
     simple: false
   }
-  return request(options).then(res => {
+    console.log(options.uri)
+
+    return request(options).then(res => {
+    console.log('in request')
+      console.log(options.uri)
     try {
+      logger.info('got request')
       /**
          * If the token is invalid - we want to exit immediately
          */

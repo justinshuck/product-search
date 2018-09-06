@@ -71,6 +71,9 @@
     "all": true,
     "include": [
       "src/**/*.js"
+    ],
+    "exclude": [
+      "src/index.js"
     ]
   },
   "standard": {

@@ -14,7 +14,7 @@ const server = new Hapi.Server({
 // Setup server routes
 server.route({
   method: 'GET',
-  path: '/productSearch',
+  path: '/search',
   handler: getData,
   options: {
     validate: {

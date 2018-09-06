@@ -4,7 +4,6 @@
     "apiKey": "kjybrqfdgp3u4yv2qzcnjndj"
   },
   "serverConfig": {
-    "port": "3000",
-    "host": "localhost"
+    "port": "3000"
   }
 }

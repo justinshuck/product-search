@@ -5,10 +5,9 @@ import Joi from 'joi'
 import logger from '../logger'
 import { getData } from './routes/search'
 
-const { port, host } = config.get('serverConfig')
+const { port } = config.get('serverConfig')
 const server = new Hapi.Server({
-  port,
-  host
+  port
 })
 
 // Setup server routes

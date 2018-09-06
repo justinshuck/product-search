@@ -1,0 +1,10 @@
+{
+  "product": {
+    "hostname": "http://api.walmartlabs.com",
+    "apiKey": "kjybrqfdgp3u4yv2qzcnjndj"
+  },
+  "serverConfig": {
+    "port": "3000",
+    "host": "localhost"
+  }
+}

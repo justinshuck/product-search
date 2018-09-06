@@ -4,7 +4,6 @@
   "description": "Simple REST API to take a keyword and return a list of products",
   "main": "index.js",
   "scripts": {
-
     "prebuild": "rm -rf dist",
     "build": "npx babel src --out-dir dist/src && npx babel *.js --out-dir dist",
     "predocker:build": "npm run build",

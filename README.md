@@ -35,7 +35,15 @@ npm install
 npm start
 ```
 
+To run the tests with coverage reported in `coverage/`, run:
+```
+npm run test
+```
 
+To run the linter, run:
+```
+npm run lint
+```
 #### Usage
 There are two ways to run the application, develop-like and production. The develop-like run will watch files and restart the service when files are detected. This can be helpful when you are debugging the service locally. 
 To run the service in develop mode, run:
@@ -59,6 +67,19 @@ Since the project uses Bunyan and reading json on the screen can become an eye-s
 npm run docker:logs
 ```
 
+Once the service is running, you can make a get request as followed:
+```
+curl -X GET \
+  'http://localhost:3000/productSearch?keyword=Backpack' 
+  
+> [
+      35613901,
+      35813552,
+      23117408
+  ]
+```
+
+which will return all items that contain that keyword in the `shortDescription` or `longDescription`.
 ### Architecture
 The architecture of this project relies on building a local cache on startup that then can be accessed later during the runtime. The caching only stores `itemId`, `shortDescription` and `longDescription`. Fuse is used to do a fuzzy search on keys in the cache and returns items that are scored as an exact match. There are some pros and cons to this approach:
 

@@ -1,5 +1,5 @@
 import { getCache } from './cacheService'
-
+import logger from '../../logger'
 const Fuse = require('fuse.js')
 const options = {
   tokenize: true,
@@ -24,4 +24,26 @@ export function searchByKeyword (keyword) {
       reject(err)
     }
   })
+}
+
+export function searchByItemId (itemId, cb) {
+  const searchByIdOpts = {
+    tokenize: true,
+    threshold: 0,
+    location: 0,
+    distance: 0,
+    maxPatternLength: 32,
+    minMatchCharLength: 2,
+    keys: [
+      'itemId'
+    ]
+  }
+  try {
+    let fuse = new Fuse(getCache(), searchByIdOpts)
+    const fullResults = fuse.search(itemId.toString())
+    logger.info(fullResults)
+    cb(null, fullResults[0])
+  } catch (err) {
+    cb(err)
+  }
 }

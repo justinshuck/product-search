@@ -1,8 +1,7 @@
-import { startServer } from './src'
+import { startServer } from './src/index'
 import { generateLocalCache } from './src/services/cacheService'
 import logger from './logger'
 import itemIds from './items'
-
 
 logger.info('Building cache...')
 generateLocalCache(itemIds).then(() => {

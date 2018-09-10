@@ -3,7 +3,6 @@ import sinon from 'sinon'
 
 import { generateLocalCache, getCache } from '../../src/services/cacheService'
 import * as productService from '../../src/services/productSearch'
-import itemIds from './../../items'
 const ITEM1 = { itemId: 1 }
 const ITEM2 = { itemId: 2 }
 const ITEMS = [ ITEM1, ITEM2 ]

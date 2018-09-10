@@ -1,0 +1,13 @@
+version: '3'
+services:
+    product-service:
+        build: product-service/
+        ports:
+          - "3000:3000"
+        deploy:
+            mode: replicated
+            replicas: 2
+    product-app:
+        build: product-app
+        ports:
+        - "8080:80"

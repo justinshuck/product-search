@@ -31,12 +31,21 @@ export function productSearch (itemId, cb) {
       if (res.statusCode === 400) {
         return cb(null, false)
       }
-      const { shortDescription, longDescription } = JSON.parse(res.body)
+      const { shortDescription,
+        longDescription,
+        name,
+        largeImage,
+        salePrice,
+        productUrl
+      } = JSON.parse(res.body)
       return cb(null, {
         itemId,
         shortDescription,
-        longDescription
-
+        longDescription,
+        name,
+        largeImage,
+        salePrice,
+        productUrl
       })
     } catch (e) {
       /**

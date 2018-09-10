@@ -7,7 +7,10 @@ import { getData } from './routes/search'
 
 const { port } = config.get('serverConfig')
 const server = new Hapi.Server({
-  port
+  port,
+  routes: {
+    cors: true
+  }
 })
 
 // Setup server routes
@@ -18,7 +21,8 @@ server.route({
   options: {
     validate: {
       query: {
-        keyword: Joi.string()
+        keyword: Joi.string(),
+        fullResponse: Joi.boolean()
       }
     }
   }

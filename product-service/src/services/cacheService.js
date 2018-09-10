@@ -5,6 +5,7 @@ import logger from '../../logger'
 import { productSearch } from './productSearch'
 
 const limiter = new RateLimiter(1, 500)
+
 function sanitizeResults (resultsArray) {
   return resultsArray.filter(itemId => itemId !== false)
 }

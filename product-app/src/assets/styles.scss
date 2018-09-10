@@ -1,0 +1,66 @@
+.not-supported {
+  margin-top: 150px;
+  text-align: center;
+}
+
+.card-list {
+  width: auto;
+  marign-left: 50px;
+  margin-right: 50px;
+  padding: 50px 0;
+}
+
+.card-list-no-results {
+  width: auto;
+  marign-left: 50px;
+  margin-right: 50px;
+  margin-top: 50px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card-media {
+  padding-top: 50%;
+}
+.card-content {
+  flex-grow: 1;
+}
+.main-content {
+  flex-grow: 1;
+  padding: 100px;
+  minWidth: 0;
+}
+.side-bar {
+  flex-grow: 1;
+  z-index: 1;
+  height: 1000px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+.side-app-bar {
+  z-index: 2;
+}
+body {
+  margin: 0px;
+  overflow:scroll;
+}
+.side-bar-content {
+  position: relative;
+  padding-top: 100px;
+  width: 400px;
+  height: auto;
+}
+
+.search-fields {
+  padding: 25px !important;
+  text-align: center;
+}
+.search-text-field {
+  width: 500px
+}
